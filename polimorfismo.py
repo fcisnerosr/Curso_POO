@@ -1,21 +1,18 @@
 class Gato():
     def sonido(self):
-        print('miau') 
-        
+        return 'miau'
+    
 class Perro():
     def sonido(self):
-        print('guau')
+        return 'guau'
+    
+gato1 = Gato()
+perro1= Perro()
+
+print(gato1.sonido())
+print(perro1.sonido())
 
 def hacer_sonido(animal):
-    return animal.sonido()
+    print(animal.sonido())
     
-    
-    
-animal1 = Gato()
-# animal1.sonido()
-
-animal2 = Perro()
-# animal2.sonido() # polimorfismo: mismo método diferente objeto
-
-hacer_sonido(animal1)
-hacer_sonido(animal2)
+hacer_sonido(gato1)
