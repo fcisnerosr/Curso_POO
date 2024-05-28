@@ -33,6 +33,9 @@ class Personaje():
         return enemigo.defensa - self.fuerza
         # print(f'{self.nombre} le hizo daño a {enemigo.nombre}')
 
+    def atacar(self, enemigo):
+        self.vida = daño(self, enemigo)
+
 heroe = Personaje('Link', 5, 3, 10, 100)
 heroe.estadisticas()
 
