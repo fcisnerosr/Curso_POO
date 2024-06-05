@@ -1,5 +1,5 @@
 class Personaje:
-    def __init__(self, nombre, fuerza, inteligencia, defensa, vida) :
+    def __init__(self, nombre, fuerza, inteligencia, defensa, vida):
         self.nombre         = nombre
         self.fuerza         = fuerza
         self.inteligencia   = inteligencia
@@ -21,7 +21,7 @@ class Personaje:
     def esta_vivo(self):
         return self.vida >= 0
     
-    def morir(self ):
+    def morir(self):
         self.vida = 0
         print(f'{self.nombre} ha muerto')
 
