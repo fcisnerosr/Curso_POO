@@ -1,22 +1,22 @@
 class Personaje:
     def __init__(self, nombre, fuerza, inteligencia, defensa, vida) :
-        self.nombre       = nombre
+        self.nombre         = nombre
         self.fuerza         = fuerza
-        self.inteligencia = inteligencia
-        self.defensa       = defensa
-        self.vida             = vida
+        self.inteligencia   = inteligencia
+        self.defensa        = defensa
+        self.vida           = vida
 
     def atributos(self):
         print(f'{self.nombre}:')
-        print(f'- Fuerza: {self.fuerza}')
-        print(f'- Inteligencia: {self.inteligencia}')
-        print(f'- Defensa: {self.defensa}')
-        print(f'- Vida: {self.vida}')
+        print(f'· Fuerza:       {self.fuerza}')
+        print(f'· Inteligencia: {self.inteligencia}')
+        print(f'· Defensa:      {self.defensa}')
+        print(f'· Vida:         {self.vida}')
 
     def subir_nivel(self, fuerza, inteligencia, defensa):
-        self.fuerza = self.fuerza + fuerza
-        self.inteligencia = self.inteligencia + inteligencia
-        self.defensa = self.defensa + defensa
+        self.fuerza         = self.fuerza + fuerza
+        self.inteligencia   = self.inteligencia + inteligencia
+        self.defensa        = self.defensa + defensa
 
     def esta_vivo(self):
         return self.vida >= 0
@@ -25,14 +25,18 @@ class Personaje:
         self.vida = 0
         print(f'{self.nombre} ha muerto')
 
-    def daño(self, contrincante):
-        return self.fuerza - contrincante.defensa
+    def daño(self, enemigo):
+        return self.fuerza - enemigo.defensa
     
-    def atacar(self, contrincante):
-        daño = self.daño(contrincante)
-        contrincante.vida = contrincante.vida - daño
-        print(f'{self.nombre} hizo {daño} puntos de daño a {contrincante.nombre}')
-        if contrincante.esta_vivo():
-            print(f'{contrincante.nombre} tiene {contrincante.vida} de vida')
+    def atacar(self, enemigo):
+        enemigo.vida = enemigo.vida - self.daño(enemigo)
+        print(f'{self.nombre} atacó a {enemigo.nombre}')
+        if not enemigo.esta_vivo():
+            enemigo.morir()
         else:
-            contrincante.morir()
+            print(f'La vida de {enemigo.nombre} es {enemigo.vida}')
+
+
+        
+
+
