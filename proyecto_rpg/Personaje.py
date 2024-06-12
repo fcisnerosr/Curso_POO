@@ -51,37 +51,60 @@ class Personaje:
     # def get_atributos(self):
     #     return self.__atributos()
 
-
 # Herencia
 class Guerrero(Personaje):
     def __init__(self, nombre, fuerza, inteligencia, defensa, vida, espada):
         super().__init__(nombre, fuerza, inteligencia, defensa, vida)
-        self.espada = espada 
-
+        self.espada = espada
+    
     def cambiar_arma(self):
-        opcion = int(input('Selecciona una arma: (1) Acero Valyrio, daño 8. (2) Matadragones, daño 10: '))
+        opcion = int(input('Elige un arma: (1) Acero Valyrio, daño 8. (2) Espada Matadragones, daño 10: '))
         if opcion == 1:
             self.espada = 8
         elif opcion == 2:
             self.espada = 10
         else:
-            print('Num. de arma incorrecto')
-
+            print('Opción no valida')
     def atributos(self):
         super().atributos()
         print(f'· Espada:       {self.espada}')
-
+        
     def daño(self, enemigo):
-        return self.fuerza * self.espada - enemigo.defensa
-
+        return (self.fuerza * self.espada) - enemigo.defensa
+    
 class Mago(Personaje):
     def __init__(self, nombre, fuerza, inteligencia, defensa, vida, libro):
         super().__init__(nombre, fuerza, inteligencia, defensa, vida)
         self.libro = libro
-
+        
     def atributos(self):
         super().atributos()
         print(f'· Libro:        {self.libro}')
-
+        
     def daño(self, enemigo):
-        return self.inteligencia * self.libro - enemigo.defensa
+        return self.libro * self.inteligencia - enemigo.defensa
+        
+def run():
+    # heroe = Personaje('Link', 10, 3, 2, 100)
+    # villan= Personaje('Ganondorf', 10, 3, 2, 100)
+    # villan.atributos()
+    # heroe.atributos()
+    # villan.atacar(heroe)
+    # heroe.atributos()
+    # guts = Guerrero('Guts', 10, 3, 2, 100, 0)
+    gotan = Personaje('Gotan', 10, 2, 1, 100)
+    # gotan.atributos()
+    # guts.cambiar_arma()
+    # guts.atributos()
+    # guts.daño(gotan)
+    # print(guts.fuerza)    
+    # guts.atacar(gotan)
+    # gotan.atributos()
+    merlin = Mago('Merlin', 1, 20, 4, 100, 20)
+    merlin.atributos()
+    
+    
+if __name__ == '__main__':
+    run()
+    
+
