@@ -21,7 +21,7 @@ class Personaje:
         self.defensa        = self.defensa + defensa
 
     def esta_vivo(self):
-        return self.vida >= 0
+        return self.vida > 0
     
     def morir(self):
         self.vida = 0
@@ -32,11 +32,14 @@ class Personaje:
     
     def atacar(self, enemigo):
         enemigo.vida = enemigo.vida - self.daño(enemigo)
-        print(f'{self.nombre} atacó a {enemigo.nombre}')
-        if not enemigo.esta_vivo():
-            enemigo.morir()
+        print(f'''{self.nombre} atacó a {enemigo.nombre} \n{self.nombre} realizó {self.daño(enemigo)} pts. de daños''')        
+        if enemigo.esta_vivo():
+           print(f'La vida de {enemigo.nombre} es {enemigo.vida}')
         else:
-            print(f'La vida de {enemigo.nombre} es {enemigo.vida}')
+            enemigo.vida = 0
+            print(f'{enemigo.nombre} ha muerto')
+
+
 
     # # Acceder al atributo
     # def get_fuerza(self):
@@ -84,31 +87,24 @@ class Mago(Personaje):
     def daño(self, enemigo):
         return self.libro * self.inteligencia - enemigo.defensa
         
+def combate(personaje_1, personaje_2):
+    turno = 1
+    while personaje_1.esta_vivo() and personaje_2.esta_vivo():
+        print(f'\nTurno {turno}')
+        personaje_1.atacar(personaje_2)
+        personaje_2.atacar(personaje_1)
+        turno += 1
+    if personaje_1.esta_vivo():
+        print(f""" \n{personaje_1.nombre} ganó. \n{personaje_1.nombre} le quedaron {personaje_1.vida} pts de vida""")
+    else:
+        print(f""" \n{personaje_2.nombre} ganó. \n{personaje_2.nombre} le quedaron {personaje_2.vida} pts de vida""")
+
+
 def run():
-    # heroe = Personaje('Link', 10, 3, 2, 100)
-    # villan= Personaje('Ganondorf', 10, 3, 2, 100)
-    # villan.atributos()
-    # heroe.atributos()
-    # villan.atacar(heroe)
-    # heroe.atributos()
-    # guts = Guerrero('Guts', 10, 3, 2, 100, 0)
-    # gotan = Personaje('Gotan', 10, 2, 1, 100)
-    # gotan.atributos()
-    # guts.cambiar_arma()
-    # guts.atributos()
-    # guts.daño(gotan)
-    # print(guts.fuerza)    
-    # guts.atacar(gotan)
-    # gotan.atributos()
-    sayayin = Personaje('Goku', 20, 15, 10, 100)
-    sayayin.atributos()
-    link    = Guerrero('Link', 20, 15, 10, 100, 5)
-    link.atributos()
-    merlin  = Mago('Merlin', 20, 15, 10, 100, 5)
-    merlin.atributos()
-    sayayin.atacar(link)
-    link.atacar(merlin)
-    merlin.atacar(sayayin)
+    personaje_1 = Personaje('Guts',10,5,3,1000)
+    personaje_2 = Mago('Vanessa',2,10,2,1000,5)
+    personaje_2.atributos()
+    combate(personaje_1, personaje_2)
     
     
 if __name__ == '__main__':
