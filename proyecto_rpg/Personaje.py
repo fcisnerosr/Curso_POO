@@ -92,7 +92,7 @@ def run():
     # villan.atacar(heroe)
     # heroe.atributos()
     # guts = Guerrero('Guts', 10, 3, 2, 100, 0)
-    gotan = Personaje('Gotan', 10, 2, 1, 100)
+    # gotan = Personaje('Gotan', 10, 2, 1, 100)
     # gotan.atributos()
     # guts.cambiar_arma()
     # guts.atributos()
@@ -100,8 +100,15 @@ def run():
     # print(guts.fuerza)    
     # guts.atacar(gotan)
     # gotan.atributos()
-    merlin = Mago('Merlin', 1, 20, 4, 100, 20)
+    sayayin = Personaje('Goku', 20, 15, 10, 100)
+    sayayin.atributos()
+    link    = Guerrero('Link', 20, 15, 10, 100, 5)
+    link.atributos()
+    merlin  = Mago('Merlin', 20, 15, 10, 100, 5)
     merlin.atributos()
+    sayayin.atacar(link)
+    link.atacar(merlin)
+    merlin.atacar(sayayin)
     
     
 if __name__ == '__main__':
