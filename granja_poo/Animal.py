@@ -17,24 +17,23 @@ class Animal():
         print(f'· Peso:   {self.peso} kg')
 
     def comer(self):
-        alimento = input('Elije un alimento: manzana +1 kg, elote +2 kg: ')
-        return alimento
+        self.alimento = input('Elije un alimento: manzana +1 kg, elote +2 kg: ')
+        return self.alimento
 
     def ganar_peso(self):
-        alimento = self.comer()
-        if alimento == 'manzana':
+        if self.alimento == 'manzana':
             self.peso = self.peso + 1
-        elif alimento == 'elote':
+        elif self.alimento == 'elote':
             self.peso = self.peso + 2
 
     def edo_salud(self):
-        alimento = self.comer()
-        if alimento == 'manzana' or alimento == 'elote':
-            print(f'{self.nombre} ha comido correctamente')
+        if self.alimento == 'manzana' or self.alimento == 'elote':
+            print(f'{self.nombre.capitalize()} ha comido correctamente')
             self.salud = self.salud + 10
         else:
-            print(f'{self.nombre} comió algo incorrecto')
+            print(f'{self.nombre.capitalize()} comió algo incorrecto')
             self.salud = self.salud - 10
+            print(f'{self.nombre.capitalize()} bajó su salud en 10pts')
 
 
     def descansa():
@@ -55,6 +54,7 @@ class Animal():
 
 vaca1 = Animal('lola', 'vaca', 100, 'no', 500)
 vaca1.estado()
+vaca1.comer()
 vaca1.ganar_peso()
-vaca1.estado()
 vaca1.edo_salud()
+vaca1.estado()
