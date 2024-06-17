@@ -2,21 +2,26 @@ import os; import datetime
 os.system('clear')
 
 class Animal():
-    def __init__(self, nombre,  genero, animal,salud, hambre, peso):
-        self.nombre = nombre
-        self.genero = genero
-        self.animal = animal
-        self.salud  = salud
-        self.hambre = hambre
-        self.peso   = peso
+    def __init__(self, nombre,  genero, animal,salud, peso, ubicacion):
+        self.nombre     = nombre
+        self.genero     = genero
+        self.animal     = animal
+        self.salud      = salud        
+        self.peso       = peso
+        self.ubicacion  = ubicacion
+
+    now = datetime.datetime.now()
+    current_time = now.time()
+    print(now)
 
     def estado(self):
         print(f'{self.animal.capitalize()}')
-        print(f'· Nombre: {self.nombre.capitalize()}')
-        print(f'· Genero: {self.genero}')
-        print(f'· Salud:  {self.salud}')
-        print(f'· Hambre: {self.hambre}')
-        print(f'· Peso:   {self.peso} kg')
+        print(f'· Nombre:       {self.nombre.capitalize()}')
+        print(f'· Genero:       {self.genero}')
+        print(f'· Salud:        {self.salud}')
+        print(f'· Hambre:       {self.hambre}')
+        print(f'· Peso:         {self.peso} kg')
+        print(f'· Ubicación:    {self.ubicacion}')
 
     def comer(self):
         self.alimento = input('Elije un alimento: manzana +1 kg, elote +2 kg: ')
@@ -38,8 +43,6 @@ class Animal():
             print(f'{self.nombre.capitalize()} bajó su salud en 10pts')
             
     def descansa(self):
-        now = datetime.datetime.now()
-        current_time = now.time()
         if current_time > datetime.time(hour=18, minute=0, second=0) or current_time > datetime.time(hour=4, minute=0, second=0):
             if self.genero == 'hembra':
                 print(f'{self.nombre} está despierta, no es hora de dormir')
@@ -51,11 +54,19 @@ class Animal():
             else:
                 print(f'{self.nombre.capitalize()} está dormido, no la molestes')
 
-    def guardados():
-        pass
+    def guardate(self):
+        if self.ubicacion == 'cabaña':
+            print(f'{self.animal} guardada')
+        elif self.ubicacion == 'área verde':
+            print(f'{self.animal} voy para allá')
+            self.ubicacion = 'cabaña'
+        else:
+            print(f'{self.animal} está perdida')
 
-    def pastando():
+    def ponte_a_pastar(self):
         pass
+        # if self.hambre == 'si':
+        #     print(f'')
 
     def hacen_popo():
         pass
@@ -65,9 +76,10 @@ class Animal():
 
 
 
-vaca1 = Animal('Lola', 'hembra', 'vaca', 100, 'no', 500)
+vaca1 = Animal('Lola', 'hembra', 'vaca', 100, 500, 'área verde')
 vaca1.estado()
 vaca1.descansa()
+vaca1.guardate()
 # vaca1.comer()
 # vaca1.ganar_peso()
 # vaca1.edo_salud()
