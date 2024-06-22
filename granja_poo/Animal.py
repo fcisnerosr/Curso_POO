@@ -1,6 +1,10 @@
 import os; import datetime
 os.system('clear')
 
+now = datetime.datetime.now()
+current_time = now.time()
+print(now)
+
 class Animal():
     def __init__(self, nombre,  genero, animal,salud, peso, ubicacion):
         self.nombre     = nombre
@@ -10,16 +14,11 @@ class Animal():
         self.peso       = peso
         self.ubicacion  = ubicacion
 
-    now = datetime.datetime.now()
-    current_time = now.time()
-    print(now)
-
     def estado(self):
         print(f'{self.animal.capitalize()}')
         print(f'· Nombre:       {self.nombre.capitalize()}')
         print(f'· Genero:       {self.genero}')
         print(f'· Salud:        {self.salud}')
-        print(f'· Hambre:       {self.hambre}')
         print(f'· Peso:         {self.peso} kg')
         print(f'· Ubicación:    {self.ubicacion}')
 
@@ -28,10 +27,19 @@ class Animal():
         return self.alimento
 
     def ganar_peso(self):
-        if self.alimento == 'manzana':
+        if self.ponte_a_pastar():
+            self.peso = self.peso + 0.5
+        elif self.alimento == 'manzana':
             self.peso = self.peso + 1
         elif self.alimento == 'elote':
-            self.peso = self.peso + 2
+            self.peso = self.peso +2
+
+        # if self.alimento == 'manzana':
+        #     self.peso = self.peso + 1
+        # elif self.alimento == 'elote':
+        #     self.peso = self.peso + 2
+        
+            
 
     def edo_salud(self):
         if self.alimento == 'manzana' or self.alimento == 'elote':
@@ -46,13 +54,17 @@ class Animal():
         if current_time > datetime.time(hour=18, minute=0, second=0) or current_time > datetime.time(hour=4, minute=0, second=0):
             if self.genero == 'hembra':
                 print(f'{self.nombre} está despierta, no es hora de dormir')
+                self.ojos = 'despierta'
             else:
                 print(f'{self.nombre} está despierto, no es hora de dormir')
-        else:
+                self.ojos = 'despierto'
+        else:            
             if self.genero == 'hembra':
                 print(f'{self.nombre.capitalize()} está dormida, no la molestes')
+                self.ojos = 'dormida'
             else:
                 print(f'{self.nombre.capitalize()} está dormido, no la molestes')
+                self.ojos = 'dormido'
 
     def guardate(self):
         if self.ubicacion == 'cabaña':
@@ -64,23 +76,28 @@ class Animal():
             print(f'{self.animal} está perdida')
 
     def ponte_a_pastar(self):
-        pass
-        # if self.hambre == 'si':
-        #     print(f'')
+        if self.ojos == 'despierto' or self.ojos == 'despierta':
+        # if current_time <= datetime.time(hour=4, minute=0, second=0) and self.ojos == 'despierto' or self.ojos == 'despierta':
+            self.ganar_peso()
+            self.estado()
 
-    def hacen_popo():
-        pass
+    # def haz_popo():
+    #     pass
 
-    def esta_vivo():
-        pass
+    # def esta_vivo():
+    #     pass
 
 
 
 vaca1 = Animal('Lola', 'hembra', 'vaca', 100, 500, 'área verde')
 vaca1.estado()
 vaca1.descansa()
-vaca1.guardate()
+# vaca1.guardate()
 # vaca1.comer()
+vaca1.ponte_a_pastar()
+vaca1.estado()
+print(vaca1.ojos)
+
 # vaca1.ganar_peso()
 # vaca1.edo_salud()
 # vaca1.estado()
